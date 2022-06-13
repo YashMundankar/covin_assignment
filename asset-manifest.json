@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/covin_assignment/static/css/main.28543693.css",
+    "main.js": "/covin_assignment/static/js/main.d8fe658d.js",
+    "static/js/787.3a4f27ad.chunk.js": "/covin_assignment/static/js/787.3a4f27ad.chunk.js",
+    "index.html": "/covin_assignment/index.html",
+    "main.28543693.css.map": "/covin_assignment/static/css/main.28543693.css.map",
+    "main.d8fe658d.js.map": "/covin_assignment/static/js/main.d8fe658d.js.map",
+    "787.3a4f27ad.chunk.js.map": "/covin_assignment/static/js/787.3a4f27ad.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28543693.css",
+    "static/js/main.d8fe658d.js"
+  ]
+}
