@@ -1,51 +1,51 @@
 import * as React from 'react';
-import { useState,useEffect } from 'react';
+import {useEffect } from 'react';
 import Button from '@mui/material/Button';
 import './App.css';
 import Card from './components/Card'
+import {useSelector , useDispatch} from "react-redux"
+import {updateData,updateBtn,updateSingleUserData,displayAction} from  "./redux/actions/index"
 
 function App() {
-  // let a=true;
-  const [data, setdata] = useState([]);
-  const [display, setdisplay] = useState(false);
-  const [btn, setbtn] = useState('');
-  let intial_state={"data":{id:0,email:"--",first_name:"--",last_name:"--",avatar:"#"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}
-  const [singleUser, setsingleUser] = useState(intial_state);
+  const dataState=useSelector((state)=>state.DataReducer);
+  const btnState=useSelector((state)=>state.BtnReducer);
+  const displayState=useSelector((state)=>state.DisplayReducer);
 
+
+  const dispatch=useDispatch();
+
+  
   useEffect(() => {
     fetch('https://reqres.in/api/users')
     .then(res=>{
       return res.json();
-      // console.log(res)
     }).then(data=>{
-      console.log(data);
-      setdata(data.data)
+      dispatch(updateData(data.data))
+
     })
     }, [])
 
     useEffect(() => {
-      fetch(`https://reqres.in/api/users/${btn}`)
+      fetch(`https://reqres.in/api/users/${btnState}`)
       .then(res=>{
         return res.json();
       }).then(data=>{
-        // console.log(data);
-        setsingleUser(data.data)
+        dispatch(updateSingleUserData(data.data))
       })
-      }, [btn])
+      }, [btnState])
   
   const handleClick=(id)=>{
-    setbtn(id);
-    setdisplay(true)
-    // console.log(id)
+    dispatch(updateBtn(id));
+    dispatch(displayAction());
   }
   return (
     <div className="App">
       <header className="App-header">
-        {display&&<Card userData={singleUser}/>}
-        {!display&&<h2>Click a button</h2>}
+        {displayState&&<Card/>}
+        {!displayState&&<h2>Click a button</h2>}
         <div className="btn_container">
             {
-            data.map(d=>(
+            dataState.map(d=>(
               <div key={d.id}>
                  <Button variant="contained" onClick={()=>{handleClick(d.id)}} style={{margin : '15px'}}>{d.id}</Button>
               </div>
