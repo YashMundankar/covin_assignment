@@ -1,4 +1,4 @@
-#Hosted on GitGub-Pages 
+#Hosted on Github-Pages 
 
 Link : https://yashmundankar.github.io/covin_assignment/
 
